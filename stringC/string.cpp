@@ -92,8 +92,38 @@ string &string::operator=(const string &other)
 
 void string::reserve(size_t new_capacity)
 {
+    if(new_capacity > capacity_) {
+        realloccate(new_capacity);
+    }
 }
 
+//释放多余内存
 void string::shrink_to_fit()
 {
+    if(size_ < capacity_) {
+        realloccate(size_);
+    }
+}
+
+string &string::append(const char *str, size_t len)
+{
+    if(nullptr == str) {
+        throw std::invalid_argument("Null pointer");
+    }
+    if(size_ + len > capacity_) {
+        reserve((size_ + len)*2);  // Double the capacity to reduce the number of reallocations
+    }
+    std::memcpy(data_ + size_, str, len);
+    size_ += len;
+    data_[size_] = '\0';  // Ensure null termination
+    return *this;
+}
+
+string &string::append(const char *str)
+{
+    if(nullptr == str) {
+        throw std::invalid_argument("Null pointer");
+    }
+    size_t len = std::strlen(str);
+    return append(str, len);
 }

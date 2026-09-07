@@ -37,6 +37,10 @@ public:
     void reserve(size_t new_capacity);  // Reserve memory for the string
     //释放多余内存
     void shrink_to_fit();  // Shrink the capacity to fit the size
+
+    //append函数
+    string& append(const char* str, size_t len);  // 二进制安全 string
+    string& append(const char* str);  // c风格 string
     
 
 
