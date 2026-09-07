@@ -41,10 +41,27 @@ public:
     //append函数
     string& append(const char* str, size_t len);  // 二进制安全 string
     string& append(const char* str);  // c风格 string
-    
 
+    //获取数据
+    const char* c_str() const noexcept{
+        return data_;  // Return the C-style string
+    };
 
+    const char* data() const noexcept{
+        return data_;  // Return the pointer to the character array
+    };
 
+    size_t size() const noexcept{
+        return size_;  // Return the current size of the string
+    };
+
+    size_t capacity() const noexcept{
+        return capacity_;  // Return the current capacity of the string
+    };
+
+    bool empty() const noexcept{
+        return size_ == 0;  // Check if the string is empty
+    };
 };
 
 const size_t string::min_capacity = 15;  // Initialize the minimum capacity
