@@ -47,6 +47,41 @@ class MyArray{
             }
             return *this;//返回本对象本身
         }
+
+        //尾插法
+        void push_Back(const T& val){
+            //判断容量是否等于大小
+            if(this->m_capacity == this->m_size){
+                return;
+            }
+            this->pAddress[this->m_size] = val;//在数组末尾插入数据
+            this->m_size++;//更新数组大小
+        }
+
+        //尾删法
+        void pop_Back(){
+            //让用户访问不到最后一个数据，认为删除了最后一个数据
+            if(this->m_size == 0){
+                return;
+            }
+            this->m_size--;//更新数组大小
+        }
+
+        //下标访问  arr[0] = 100
+        T& operator[](int index){
+            return this->pAddress[index];
+        }
+
+        //返回数组容量
+        int getArrCapacity(){
+            return this->m_capacity;
+        }
+
+        //返回数组大小
+        int getArrSize(){
+            return this->m_size;
+        }
+
         
         //析构函数
         ~MyArray(){
